@@ -8,12 +8,7 @@
     "build": "tsc && vite build",
     "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "format": "prettier --write './index.html' './src/**/*.{js,jsx,ts,tsx}'",
-    "deploy:firebase:init": "firebase login && firebase use --add",
-    "deploy:firebase": "firebase deploy --only hosting",
-    "deploy:walrus:testnet": "pnpm build && pnpx walrus-sites-deploy -n testnet",
-    "deploy:walrus:mainnet": "pnpm build && pnpx walrus-sites-deploy -n mainnet",
-    "deploy:arweave": "ARWEAVE_DEPLOYMENT=true pnpm run build && pnpx arkb deploy ./dist -w ./arweave-keyfile.json --auto-confirm"
+    "format": "prettier --write './index.html' './src/**/*.{js,jsx,ts,tsx}'"
   },
   "dependencies": {
     "@mysten/dapp-kit": "^0.16.5",

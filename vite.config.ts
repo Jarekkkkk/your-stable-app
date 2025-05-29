@@ -7,7 +7,7 @@ const ARWEAVE_DEPLOYMENT = process.env.ARWEAVE_DEPLOYMENT === 'true' || false
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: !ARWEAVE_DEPLOYMENT ? '/' : './',
+  base: '/your-stable-app/',
   resolve: {
     alias: {
       '~~': path.resolve(__dirname, './src'),
