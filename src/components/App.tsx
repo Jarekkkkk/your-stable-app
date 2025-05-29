@@ -30,7 +30,7 @@ const App: FC = () => {
           themeSettings={themeSettings}
           customQueryClient={queryClient}
         >
-          <BrowserRouter>
+          <BrowserRouter basename="/your-stable-app">
             <Routes>
               <Route index path="/" element={<IndexPage />} />
             </Routes>
