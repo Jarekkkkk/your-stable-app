@@ -17,7 +17,6 @@ import {
 import useTransact from '@suiware/kit/useTransact'
 import { MouseEvent, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
-import { queryClient } from '~~/components/App'
 import CustomConnectButton from '~~/components/CustomConnectButton'
 import { EXPLORER_URL_VARIABLE_NAME } from '~~/config/network'
 import {
@@ -66,33 +65,39 @@ const CreateCounterForm = () => {
   const [amount, setAmount] = useState('')
 
   // Balance queries
-  const { data: stableCoinBalance, isPending: isStableBalanceFetching } =
-    useSuiClientQuery(
-      'getBalance',
-      {
-        owner: currentAccount?.address || '',
-        coinType: STABLE_COIN_TYPES[selectedStableCoin],
-      },
-      {
-        enabled: !!currentAccount?.address,
-        gcTime: 10000,
-        queryKey: ['balance', STABLE_COIN_TYPES[selectedStableCoin]],
-      }
-    )
+  const {
+    data: stableCoinBalance,
+    isPending: isStableBalanceFetching,
+    refetch: refetchStableCoinBalance,
+  } = useSuiClientQuery(
+    'getBalance',
+    {
+      owner: currentAccount?.address || '',
+      coinType: STABLE_COIN_TYPES[selectedStableCoin],
+    },
+    {
+      enabled: !!currentAccount?.address,
+      gcTime: 10000,
+      queryKey: ['balance', STABLE_COIN_TYPES[selectedStableCoin]],
+    }
+  )
 
-  const { data: yourStableBalance, isPending: isYourStableFetching } =
-    useSuiClientQuery(
-      'getBalance',
-      {
-        owner: currentAccount?.address || '',
-        coinType: YOUR_STABLE_COIN_TYPES[selectedYourStable],
-      },
-      {
-        enabled: !!currentAccount?.address,
-        gcTime: 10000,
-        queryKey: ['balance', YOUR_STABLE_COIN_TYPES[selectedYourStable]],
-      }
-    )
+  const {
+    data: yourStableBalance,
+    isPending: isYourStableFetching,
+    refetch: refetchYourStableCoinBalance,
+  } = useSuiClientQuery(
+    'getBalance',
+    {
+      owner: currentAccount?.address || '',
+      coinType: YOUR_STABLE_COIN_TYPES[selectedYourStable],
+    },
+    {
+      enabled: !!currentAccount?.address,
+      gcTime: 10000,
+      queryKey: ['balance', YOUR_STABLE_COIN_TYPES[selectedYourStable]],
+    }
+  )
 
   // Transaction handler
   const { transact: create } = useTransact({
@@ -100,7 +105,7 @@ const CreateCounterForm = () => {
       const nId = notification.txLoading()
       setNotificationId(nId)
     },
-    onSuccess: (
+    onSuccess: async (
       data: SuiSignAndExecuteTransactionOutput,
       response: SuiTransactionBlockResponse
     ) => {
@@ -112,12 +117,8 @@ const CreateCounterForm = () => {
       console.log({ response })
 
       // Invalidate both balance queries
-      queryClient.invalidateQueries({
-        queryKey: ['balance', YOUR_STABLE_COIN_TYPES[selectedYourStable]],
-      })
-      queryClient.invalidateQueries({
-        queryKey: ['balance', STABLE_COIN_TYPES[selectedStableCoin]],
-      })
+      await refetchStableCoinBalance()
+      await refetchYourStableCoinBalance()
     },
     onError: (e: Error) => {
       notification.txError(e, null, notificationId)

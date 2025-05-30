@@ -14,11 +14,10 @@ import { ENetwork } from '~~/types/ENetwork'
 import { QueryClient } from '@tanstack/react-query'
 
 const themeSettings = getThemeSettings()
-export const queryClient = new QueryClient()
 
 const App: FC = () => {
   const { networkConfig } = useNetworkConfig()
-
+  const queryClient = new QueryClient()
   return (
     <StrictMode>
       <ThemeProvider>
