@@ -3,6 +3,7 @@ import toast, { Renderable } from 'react-hot-toast'
 import Notification from '~~/components/Notification'
 
 const reportLoading = (message: Renderable) => {
+  toast.dismiss()
   const content = <Notification type="loading">{message}</Notification>
 
   return toast.loading(content)
@@ -13,6 +14,7 @@ const reportError = (
   userFriendlyMessage?: string | null,
   id?: string
 ) => {
+  toast.dismiss()
   if (error != null) {
     console.error(error)
   }
@@ -34,6 +36,7 @@ const reportError = (
 }
 
 const reportSuccess = (message: Renderable, id?: string) => {
+  toast.dismiss()
   if (id == null) {
     id = Date.now().toString()
   }

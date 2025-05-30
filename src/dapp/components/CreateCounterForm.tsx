@@ -16,6 +16,7 @@ import {
 } from '@radix-ui/themes'
 import useTransact from '@suiware/kit/useTransact'
 import { MouseEvent, useMemo, useState } from 'react'
+import toast from 'react-hot-toast'
 import { queryClient } from '~~/components/App'
 import CustomConnectButton from '~~/components/CustomConnectButton'
 import { EXPLORER_URL_VARIABLE_NAME } from '~~/config/network'
@@ -103,11 +104,11 @@ const CreateCounterForm = () => {
       data: SuiSignAndExecuteTransactionOutput,
       response: SuiTransactionBlockResponse
     ) => {
+      toast.dismiss(notificationId)
       notification.txSuccess(
         transactionUrl(explorerUrl, data.digest),
         notificationId
       )
-
       console.log({ response })
 
       // Invalidate both balance queries
@@ -120,9 +121,6 @@ const CreateCounterForm = () => {
     },
     onError: (e: Error) => {
       notification.txError(e, null, notificationId)
-    },
-    waitForTransactionOptions: {
-      showEffects: true,
     },
   })
 
