@@ -19,7 +19,7 @@
         "react-hot-toast": "^2.5.2",
         "react-router": "^7.6.1",
         "react-use": "^17.6.0",
-        "your-stable-sdk": "^0.1.6",
+        "your-stable-sdk": "^0.1.10",
       },
       "devDependencies": {
         "@types/node": "^22.15.23",
@@ -960,7 +960,7 @@
 
     "yocto-queue": ["yocto-queue@0.1.0", "", {}, "sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q=="],
 
-    "your-stable-sdk": ["your-stable-sdk@0.1.6", "", { "peerDependencies": { "@mysten/sui": "^1.30.1" } }, "sha512-edIdA0EqbmhWzvf9VsdlJ8LKvKP/U2c1NN32W83XlBaWgEX4Hu0GtqUHPH5t5WECrj6GSpyJwHbr3he4G2am2w=="],
+    "your-stable-sdk": ["your-stable-sdk@0.1.10", "", { "peerDependencies": { "@mysten/sui": "^1.30.1" } }, "sha512-D9pBTNXa6qxNJuF5wwwIMvwMkA1sRlvEyIVCwttmbc2Yh3edUpeE9ZJ+vau+hcUiPkEUch2M9+XDaWpGAzuMSg=="],
 
     "zustand": ["zustand@4.5.7", "", { "dependencies": { "use-sync-external-store": "^1.2.2" }, "peerDependencies": { "@types/react": ">=16.8", "immer": ">=9.0.6", "react": ">=16.8" }, "optionalPeers": ["@types/react", "immer", "react"] }, "sha512-CHOUy7mu3lbD6o6LJLfllpjkzhHXSBlX8B9+qPddUsIfeF5S/UZ5q0kmCsnRqT1UHFQZchNFDDzMbQsuesHWlw=="],
 

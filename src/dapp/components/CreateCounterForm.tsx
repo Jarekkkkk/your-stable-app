@@ -36,7 +36,7 @@ const STABLE_COIN_DECIMALS: Record<STABLE_COIN, number> = {
 }
 
 const YOUR_STABLE_COIN_TYPES: Record<YOUR_STABLE_COIN, string> = {
-  JUSD: '0xce3201eab9a726748eb46dd16fa20005dadcc287d066f845c2f3e163d3bc090c::jusd::JUSD',
+  JUSD: '0x26c842736665d461bd9a73c7a11ac69d64ec14015fdb5fd8f3c04c881a993f6a::jusd::JUSD',
 }
 
 const YOUR_STABLE_DECIMALS: Record<YOUR_STABLE_COIN, number> = {
