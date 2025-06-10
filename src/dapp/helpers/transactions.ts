@@ -93,14 +93,7 @@ export const prepareBurnYourStableTransaction = async (
     BigInt(burnedAmount)
   )
   // stableCoin Amount to redeem
-  const redeemedAmount = BigInt(burnedAmount)
-  const buckCoin = factory.burnYourStableMoveCall(
-    tx,
-    yourStableCoin,
-    'USDC',
-    sender,
-    redeemedAmount
-  )
+  const buckCoin = factory.burnYourStableMoveCall(tx, yourStableCoin, 'USDC')
 
   tx.transferObjects([buckCoin], sender)
 
